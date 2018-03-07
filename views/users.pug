@@ -1,0 +1,54 @@
+extends layout
+
+block content
+      div.top
+
+      div.container
+          contain
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-3">User Management Page</h1>
+                    <p class="lead">This is the users page.</p>
+                </div>
+            </div>
+
+            a#addUserBtn.btn.btn-success(href='/add_user_Form') Add New User
+
+            //- Table for users database.
+            table.table.table-responsive-md.table-bordered.table-dark
+                thead
+                    tr
+                        //<th scope="col">#</th>
+                        th id
+                        th First Name
+                        th Last Name
+                        th Email
+                        th Age
+
+
+
+                tbody     
+                    //- Checking if there are users.
+                    if users
+                        //- Looping through users array.
+                        each user, i in users
+                            <tr>
+                                //<th scope="row"></th>
+                                td= user.id 
+                                td= user.firstName
+                                td= user.lastName
+                                td= user.email
+                                td= user.age
+                                td 
+                                    form(action="/edit_user_Form", method="POST")
+                                        input(type="hidden", name="userEdit", value=user.id)
+                                        input.btn.btn-primary(type="submit", value="Edit")
+                                td
+                                    form(action="/delete_user_Form", method="POST")
+                                        input(type="hidden", name="idField", value=user.id)
+                                        input.btn.btn-danger(type="submit", value="Delete")
+                            </tr>
+           
+
+
+      div.footer

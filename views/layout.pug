@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title = title
+    title = title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/bootstrap/js/jquery-3.2.1.min.js")
+    script(src="/bootstrap/js/popper.min.js")
+    script(src="/bootstrap/js/bootstrap.min.js")
+    script(src="/javascripts/main.js")
+
+  body
+      nav.navbar.navbar-dark.bg-dark(role="navigation")
+        .container-fluid
+          .navbar-header
+            each item in navitems
+              if (user && item.content == 'Login')
+                | <span> | <a href="/auth/logout">Logout</a> </span>              
+              else if (user && item.content == 'Welcome' && title != "welcome")
+                <span> | </span>   
+                a(class=title==item.content?'active':undefined, href=item.link)=item.content
+              else
+                if item.content != 'Welcome'
+                  <span> | </span>
+                  a(class=title==item.content?'active':undefined, href=item.link)=item.content
+
+      div.page-header
+      h1
+     
+block content
+

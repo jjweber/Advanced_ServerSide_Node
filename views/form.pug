@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register
+
+        // register form
+        form(action='/submit', method='POST')
+          div.form-group
+            if nameInValid
+              p.red= nameInValid
+            label(for='name') Name: <small style="color:red">*required</small>
+            input#name.form-control(type='text', placeholder='first and last' name='name')
+          div.form-group
+            if emailInValid
+              p.red= emailInValid
+            label(for='email') Email: <small style="color:red">*required</small>
+            input#email.form-control(type='email', placeholder='name@email.com' name='email')
+          div.form-group
+            label(for='myFile') My File:
+            input#myFile.form-control-file(type='file' name='myfile')
+          button.Delete(type='submit', name='submit') Save
